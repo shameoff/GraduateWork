@@ -1,0 +1,32 @@
+kind: Collector
+metadata:
+    description: "Коллектор для данных из Auditbeat"
+    # ...
+spec:
+    type: vector
+    input:
+        type: protocol
+        config:
+            mode: tcp
+            port: 6100
+    output:
+        type: kaas_cluster
+        config:
+            topic_params:
+                retention_bytes: 1073741824
+                # ...
+            user_params:
+                producer:
+                    produce_byte_rate: 2000
+                    # ...
+                consumer:
+                    # ...
+    env:
+        SOME_VAR: "vault/path/to/the/secret"
+        ANOTHER_VAR: "value"
+    deploy:
+        image: registry.example.com/collector-image:stable
+        availability_zones:
+            - us-east-1a
+            # ...
+        replicas: 3

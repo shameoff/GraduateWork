@@ -1,0 +1,8 @@
+collectors
+├───antivirus
+│   └─── main.yml <--- файл справа
+├───auditbeat
+│   ├─── vector-input.yml
+│   └─── main.yml
+└─── ...
+
