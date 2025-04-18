@@ -1,8 +1,11 @@
 collectors
 ├───antivirus
-│   └─── main.yml <--- файл справа
+│   ├─── logstash-input.conf
+│   ├─── logstash-output.conf
+│   └─── main.yml
 ├───auditbeat
+│   └─── main.yml
+├───network-cisco
 │   ├─── vector-input.yml
 │   └─── main.yml
 └─── ...
-
