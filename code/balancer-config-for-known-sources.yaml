@@ -1,0 +1,37 @@
+# Пример конфигурации HAProxy в случае, если ИЗВЕСТНО, данные какого источника балансируются
+collector_example_com:
+  frontends:
+    collector_example_com__status:
+      bind: "192.168.11.1:1111" # Адрес балансировщика
+      monitor-uri: "/haproxy/frontend/status"
+      monitor: fail if !backend_is_alive
+      acl:
+        - "backend_is_alive nbsrv(collector_auditbeat) ge 1"
+        - "backend_is_alive nbsrv(collector_antivirus) ge 1"
+        # ... для каждого бэкенда, перечисленного в backends
+    frontend_collector_antivirus:
+      mode: tcp
+      bind: 192.168.11.1:5001
+      default_backend: backend_collector_antivirus
+
+    frontend_collector_auditbeat:
+      mode: tcp
+      bind: 192.168.11.1:5002
+      default_backend: backend_collector_auditbeat
+
+  backends:
+    backend_collector_antivirus:
+      mode: tcp
+      balance: roundrobin
+      default-server: check inter 5s fall 3 rise 3
+      server:
+        collectors-host01.example.com: 172.11.11.11:5001
+        collectors-host02.example.com: 10.212.196.19:5001
+
+    backend_collector_auditbeat:
+      mode: tcp
+      balance: roundrobin
+      default-server: check inter 5s fall 3 rise 3
+      server:
+        collectors-host01.example.com: 172.11.11.11:5002
+        collectors-host02.example.com: 10.212.196.19:5002
