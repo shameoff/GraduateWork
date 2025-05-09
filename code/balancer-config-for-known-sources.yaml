@@ -13,22 +13,19 @@ collector_example_com:
       mode: tcp
       bind: 192.168.11.1:5001
       default_backend: backend_collector_antivirus
-
     frontend_collector_auditbeat:
       mode: tcp
       bind: 192.168.11.1:5002
       default_backend: backend_collector_auditbeat
-
   backends:
-    backend_collector_antivirus:
+    collector_antivirus:
       mode: tcp
       balance: roundrobin
       default-server: check inter 5s fall 3 rise 3
       server:
         collectors-host01.example.com: 172.11.11.11:5001
         collectors-host02.example.com: 10.212.196.19:5001
-
-    backend_collector_auditbeat:
+    collector_auditbeat:
       mode: tcp
       balance: roundrobin
       default-server: check inter 5s fall 3 rise 3

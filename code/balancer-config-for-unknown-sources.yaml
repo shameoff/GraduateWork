@@ -13,12 +13,11 @@ collector_example_com:
       mode: tcp
       bind: 192.168.11.1:5001
       default_backend: collector_example_com_tcp5001
-
     collector_example_com_tcp5002:
       mode: tcp
       bind: 192.168.11.1:5002
       default_backend: collector_example_com_tcp5002
-
+    # ... для каждого порта в заданном диапазоне
   backends:
     collector_example_com_tcp5001:
       mode: tcp
@@ -27,7 +26,6 @@ collector_example_com:
       server:
         collectors-host01.example.com: 172.11.11.11:5001
         collectors-host02.example.com: 10.212.196.19:5001
-
     collector_example_com_tcp5002:
       mode: tcp
       balance: roundrobin
@@ -35,3 +33,4 @@ collector_example_com:
       server:
         collectors-host01.example.com: 172.11.11.11:5002
         collectors-host02.example.com: 10.212.196.19:5002
+    # ... для каждого порта в заданном диапазоне

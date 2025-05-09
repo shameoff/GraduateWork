@@ -1,0 +1,52 @@
+@startuml new origin
+
+actor           "TH Аналитик" as th_analyst
+actor           "SRE инженер" as sre
+participant     ":Репозиторий\nколлекторов:"      as log_collectors
+participant     ":Репозиторий\nAnsible:"     as ansible_deploy
+participant     ":Kafka API:"    as kafka_api
+participant     ":Сервис\nподдержки\nKafka:" as kafka_support
+actor           "Инженер Kafka" as kafka_engineer
+participant     ":Репозиторий\nбалансировщиков:"    as net_lb
+actor           "Инженер поддержки\nбалансировщиков" as lb_engineer
+participant     ":Репозиторий\nпарсера:" as parser_repo
+
+
+th_analyst -> sre++: "Запрос на создание\nколлектора и топика"
+sre ->> log_collectors: "Создание конфигурации коллектора"
+sre ->> ansible_deploy: "Создание конфигурации развертывания коллектора"
+sre ->> kafka_api: "Создание топика в Kafka"
+sre --> kafka_support++: "Запрос на изменение конфигурации топика"
+
+opt Топик не соответствует необходимым параметрам
+kafka_support -> kafka_engineer++: "Запрос на согласование\nизменения конфигурации\nтопика"
+kafka_support <-- kafka_engineer: "Согласование"
+deactivate kafka_engineer
+kafka_support ->> kafka_support: "Изменение конфигурации\nтопика"
+sre <-- kafka_support: "Результат изменения конфигурации топика"
+deactivate kafka_support
+end opt
+
+sre ->> log_collectors: "Развертывание коллектора"
+
+
+opt Коллектор принимает логи по TCP или TCP-based протоколу
+sre -> net_lb++: "Создание конфигурации балансировщика"
+net_lb -> lb_engineer++: "Запрос на согласование\nизменения конфигурации\nбалансировщика"
+net_lb <-- lb_engineer: "Согласование"
+deactivate lb_engineer
+sre <-- net_lb: "Результат изменения конфигурации балансировщика"
+deactivate net_lb
+end opt
+th_analyst <<-- sre: "Адрес коллектора и топика\nв Kafka"
+deactivate sre
+
+th_analyst ->> parser_repo: "Создание нового парсера или изменение конфигурации cуществующего"
+sre ->> parser_repo: "Развертывание"
+
+
+
+hide footbox
+@enduml
+
+
