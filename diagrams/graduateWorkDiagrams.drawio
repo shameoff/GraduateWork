@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" version="26.2.14" pages="3">
   <diagram name="Страница — 1" id="MQlVUcTQoNk-NExk4Qk0">
-    <mxGraphModel dx="5340" dy="3099" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="4379" dy="2739" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -2093,6 +2093,36 @@
         </mxCell>
         <mxCell id="du3UC13V_rhI-RI3lQGv-86" value="&lt;h1&gt;Описание реализации автоматизации&lt;/h1&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="9605" y="-1020" width="480" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="du3UC13V_rhI-RI3lQGv-87" value="Источник событий" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="10570" y="-932" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="du3UC13V_rhI-RI3lQGv-88" value="Активный экземпляр коллектора" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="10710" y="-932" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="du3UC13V_rhI-RI3lQGv-89" value="Конфигурация коллектора" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="10840" y="-932" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="du3UC13V_rhI-RI3lQGv-90" value="Кластер Kafka" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="10970" y="-932" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="du3UC13V_rhI-RI3lQGv-91" value="Пользователь Kafka" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="11100" y="-932" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="du3UC13V_rhI-RI3lQGv-92" value="Топик Kafka" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="11100" y="-863" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="du3UC13V_rhI-RI3lQGv-93" value="Активный экземпляр парсера" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="10840" y="-843" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="du3UC13V_rhI-RI3lQGv-94" value="Конфигурация парсера" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="10840" y="-776.5" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="du3UC13V_rhI-RI3lQGv-95" value="Активный экземпляр балансировщика" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="10970" y="-843" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="du3UC13V_rhI-RI3lQGv-96" value="Конфигурация балансировщика" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="10970" y="-776.5" width="110" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
