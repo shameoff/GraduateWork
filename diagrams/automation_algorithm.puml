@@ -1,0 +1,46 @@
+@startuml
+actor  "Main"                    as Main
+participant ":CollectorManager"   as CM
+participant ":TopicManager"       as TM
+participant ":UserManager"        as UM
+participant ":VaultAPI"           as Vault
+participant ":KaaSAPI"            as KaaS
+
+loop по каждому каталогу в  collectors/*
+  
+  Main -> CM++: process(dir/main.yml)
+  CM -> CM++: deployCollector()
+  deactivate CM
+  Main <-- CM: OK
+  deactivate CM
+  
+  Main -> Main++: parseKafkaConfig()
+  deactivate Main
+
+  Main  -> TM++: process(Topic)
+  TM -> KaaS++: createTopic(Topic)
+  TM <-- KaaS : OK
+  deactivate KaaS
+  Main <-- TM: Topic
+  deactivate TM
+
+  Main  --> TM++: process(User)
+  
+  TM -> KaaS++: createUser(User)
+  TM <-- KaaS : OK
+  deactivate KaaS
+  TM -> KaaS++: createPermission(Perm)
+  TM <-- KaaS : OK
+  deactivate KaaS
+
+  TM --> VaultAPI: saveUserCredentials(User)
+
+  Main <-- TM: User + Permission
+  deactivate TM
+
+end loop
+
+' Main --> Main : report summary
+
+hide footbox
+@enduml
