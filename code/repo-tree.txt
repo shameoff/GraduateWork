@@ -1,11 +1,10 @@
-collectors
+sources
 ├───antivirus
-│   ├─── logstash-input.conf
-│   ├─── logstash-output.conf
+│   ├─── kafka.yml
 │   └─── main.yml
 ├───auditbeat
-│   └─── main.yml
-├───network-cisco
+│   ├─── kafka.yml
 │   ├─── vector-input.yml
 │   └─── main.yml
 └─── ...
+

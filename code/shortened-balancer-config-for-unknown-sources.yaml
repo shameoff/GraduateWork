@@ -1,0 +1,15 @@
+collector_example_com:
+  frontends:
+    collector_tcp5001:
+    collector_tcp5002:
+    collector_tcp5003:
+    collector_tcp5004:
+    collector_tcp5005:
+    # ... for each port
+  backends:
+    collector_tcp5001:
+    collector_tcp5002:
+    collector_tcp5003:
+    collector_tcp5004:
+    collector_tcp5005:
+    # ... for each port

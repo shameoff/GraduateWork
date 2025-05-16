@@ -1,20 +1,14 @@
 @startuml
 actor  "Main"                    as Main
-participant ":CollectorManager"   as CM
 participant ":TopicManager"       as TM
 participant ":UserManager"        as UM
-participant ":VaultAPI"           as Vault
 participant ":KaaSAPI"            as KaaS
+participant ":VaultAPI"           as VaultAPI
+participant ":CollectorManager"   as CM
 
-loop по каждому каталогу в  collectors/*
-  
-  Main -> CM++: process(dir/main.yml)
-  CM -> CM++: deployCollector()
-  deactivate CM
-  Main <-- CM: OK
-  deactivate CM
-  
-  Main -> Main++: parseKafkaConfig()
+loop for each dir in sources/*
+
+  Main -> Main++: parseKafkaConfig(dir/kafka.yml)
   deactivate Main
 
   Main  -> TM++: process(Topic)
@@ -24,23 +18,30 @@ loop по каждому каталогу в  collectors/*
   Main <-- TM: Topic
   deactivate TM
 
-  Main  --> TM++: process(User)
+  Main  -> UM++: process(User, Topic)
   
-  TM -> KaaS++: createUser(User)
-  TM <-- KaaS : OK
-  deactivate KaaS
-  TM -> KaaS++: createPermission(Perm)
-  TM <-- KaaS : OK
+  UM -> KaaS++: createUser(User)
+  UM <-- KaaS : OK
   deactivate KaaS
 
-  TM --> VaultAPI: saveUserCredentials(User)
+  UM ->> VaultAPI: saveUserCredentials(User)
 
-  Main <-- TM: User + Permission
-  deactivate TM
+  UM -> KaaS++: createPermission(Perm)
+  UM <-- KaaS : OK
+  deactivate KaaS
+
+
+  Main <-- UM: User + Permission
+  deactivate UM
+
+  Main -> CM++: process(dir/main.yml)
+  CM -> CM++: deployCollector()
+  deactivate CM
+  Main <-- CM: OK
+  deactivate CM
+
 
 end loop
-
-' Main --> Main : report summary
 
 hide footbox
 @enduml

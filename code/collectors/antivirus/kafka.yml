@@ -1,0 +1,10 @@
+topic:
+  retention_bytes: 1073741824
+  # ...
+
+users:
+    producer:
+      produce_byte_rate: 2000
+          # ...
+    consumer:
+          # ...

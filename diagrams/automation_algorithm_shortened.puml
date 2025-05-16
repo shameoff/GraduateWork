@@ -1,0 +1,30 @@
+@startuml
+participant  "Main"                    as Main
+participant ":TopicManager"       as TM
+participant ":UserManager"        as UM
+participant ":CollectorManager"   as CM
+
+loop for each dir in sources/*
+
+  Main -> Main++: parseConfigs(dir)
+  deactivate Main
+
+  Main  -> TM++: process(Topic)
+  Main <-- TM: Topic
+  deactivate TM
+
+  Main  -> UM++: process(User, Topic)
+  Main <-- UM: (User, Permission)
+  deactivate UM
+
+  Main -> CM++: process(Collector)
+  Main <-- CM: Collector
+  deactivate CM
+end loop
+
+Main -> Main++: deleteUnusedEntities()
+deactivate Main
+
+
+hide footbox
+@enduml
