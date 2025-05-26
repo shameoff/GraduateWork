@@ -1,10 +1,9 @@
 topic:
   retention_bytes: 1073741824
-  # ...
+  partitions: 4
 
 users:
-    producer:
-      produce_byte_rate: 2000
-          # ...
-    consumer:
-          # ...
+  producer:
+    produce_byte_rate: 2000
+  consumer:
+    consume_byte_rate: 2000

@@ -1,10 +1,15 @@
-sources
-├───antivirus
-│   ├─── kafka.yml
-│   └─── main.yml
-├───auditbeat
-│   ├─── kafka.yml
-│   ├─── vector-input.yml
-│   └─── main.yml
+sources-repo
+├─── configs
+│    ├─── antivirus
+│    │    ├─── kafka.yml
+│    │    └─── main.yml
+│    ├─── auditbeat
+│    │    ├─── kafka.yml
+│    │    ├─── vector-input.yml
+│    │    └─── main.yml
+│    └─── ...
+├─── src
+│    ├─── main.py
+│    └─── ...
+├─── .gitlab-ci.yml
 └─── ...
-
